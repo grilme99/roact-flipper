@@ -1,22 +1,11 @@
 local useMotor = require(script.Parent.useMotor)
 local getBinding = require(script.Parent.getBinding)
 
-local function getInitialValue(goal)
-	if goal.step then
-		return goal._targetValue
-	else
-		local initialValues = {}
-		for key, motor in pairs(goal) do
-			initialValues[key] = getInitialValue(motor)
-		end
-		return initialValues
-	end
-end
-
-local function useGoal(goal)
-	local motor = useMotor(getInitialValue(goal))
+local function useGoal<T>(initialValue: T, goal: any)
+	local motor = useMotor(initialValue)
 	motor:setGoal(goal)
-	return getBinding(motor), motor
+
+	return getBinding(motor) :: T, motor
 end
 
 return useGoal
