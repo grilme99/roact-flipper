@@ -17,7 +17,7 @@ local function getBinding(motor)
 		return motor[AssignedBinding]
 	end
 
-	local binding, setBindingValue = Roact.useState(motor:getValue())
+	local binding, setBindingValue = React.useState(motor:getValue())
 	motor:onStep(setBindingValue)
 
 	motor[AssignedBinding] = binding
