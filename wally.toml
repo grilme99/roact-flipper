@@ -1,6 +1,6 @@
 [package]
 name = "grilme99/react-flipper"
-version = "2.1.1"
+version = "2.1.2"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 include = ["default.project.json", "src"]

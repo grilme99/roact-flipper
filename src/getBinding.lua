@@ -1,6 +1,6 @@
 local Packages = script.Parent.Parent
 
-local Roact = require(Packages.Roact)
+local React = require(Packages.React)
 local Flipper = require(Packages.Flipper)
 
 local AssignedBinding = require(script.Parent.AssignedBinding)
@@ -17,7 +17,7 @@ local function getBinding(motor)
 		return motor[AssignedBinding]
 	end
 
-	local binding, setBindingValue = Roact.createBinding(motor:getValue())
+	local binding, setBindingValue = Roact.useState(motor:getValue())
 	motor:onStep(setBindingValue)
 
 	motor[AssignedBinding] = binding
