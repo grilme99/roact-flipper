@@ -1,4 +1,6 @@
-local Flipper = require(script.Parent.Parent.Flipper)
+local Packages = script.Parent.Parent
+local Flipper = require(Packages.Flipper)
+local React = require(Packages.React)
 
 local function createMotor(initialValue)
 	local initialValueType = type(initialValue)
@@ -7,19 +9,21 @@ local function createMotor(initialValue)
 	elseif initialValueType == "table" then
 		return Flipper.GroupMotor.new(initialValue)
 	else
-		error(("Invalid type for initialValue. Expected \"number\" or \"table\", got \"%s\""):format(initialValueType))
+		error(('Invalid type for initialValue. Expected "number" or "table", got "%s"'):format(initialValueType))
 	end
 end
 
-local function useMotor(hooks, initialValue)
-	local motor = hooks.useValue(createMotor(initialValue)).value
+local function useMotor(initialValue)
+	local motor = React.useMemo(function()
+		return createMotor(initialValue)
+	end, {})
 
-	hooks.useEffect(function()
+	React.useEffect(function()
 		return function()
 			motor:destroy()
 		end
 	end, {})
-	
+
 	return motor
 end
 

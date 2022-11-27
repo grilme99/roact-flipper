@@ -1,5 +1,7 @@
-local Roact = require(script.Parent.Parent.Roact)
-local Flipper = require(script.Parent.Parent.Flipper)
+local Packages = script.Parent.Parent
+
+local Roact = require(Packages.Roact)
+local Flipper = require(Packages.Flipper)
 
 local AssignedBinding = require(script.Parent.AssignedBinding)
 
