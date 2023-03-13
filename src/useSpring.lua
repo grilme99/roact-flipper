@@ -8,7 +8,7 @@ export type SpringOptions = {
 	dampingRatio: number,
 }
 
-local function useSpring<T>(initialValue: T, targetValue: T, options: SpringOptions): T
+local function useSpring<T>(initialValue: T, targetValue: T, options: SpringOptions)
 	return useGoal(initialValue, Flipper.Spring.new(targetValue, options))
 end
 

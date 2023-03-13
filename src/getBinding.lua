@@ -3,7 +3,7 @@ local Packages = script.Parent.Parent
 local React = require(Packages.React)
 local Flipper = require(Packages.Flipper)
 
-local function getBinding(motor): any
+local function getBinding(motor)
 	assert(motor, "Missing argument #1: motor")
 
 	local isMotor = Flipper.isMotor(motor)
@@ -11,7 +11,7 @@ local function getBinding(motor): any
 		error("Provided value is not a motor!", 2)
 	end
 
-	local binding, setBindingValue = React.useState(motor:getValue())
+	local binding, setBindingValue = React.useBinding(motor:getValue())
 	motor:onStep(setBindingValue)
 
 	return binding
